@@ -1,0 +1,883 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ip120Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Должность">
+          <Key>
+            <PropertyRef Name="Код_должности" />
+          </Key>
+          <Property Name="Код_должности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Инвентарь">
+          <Key>
+            <PropertyRef Name="Код_инвентаря" />
+          </Key>
+          <Property Name="Код_инвентаря" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Занятость" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Состояние" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Материал">
+          <Key>
+            <PropertyRef Name="Код_материала" />
+          </Key>
+          <Property Name="Код_материала" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Состояние" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Количество" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="фото" Type="nvarchar" MaxLength="250" />
+          <Property Name="Фильтр" Type="int" />
+          <Property Name="Наличие" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Новый инвентарь со склада">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Производитель" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Артикул" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Дата_прибытия" Type="date" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Количество" Type="int" Nullable="false" />
+          <Property Name="Цена" Type="money" Nullable="false" />
+          <Property Name="Адрес_производителя" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Новый_материал_со_склада">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Производитель" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Артикул" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Дата_прибытия" Type="date" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Количество" Type="int" Nullable="false" />
+          <Property Name="Цена" Type="money" Nullable="false" />
+          <Property Name="Адрес_производителя" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Образование">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Отдел">
+          <Key>
+            <PropertyRef Name="Код_отдела" />
+          </Key>
+          <Property Name="Код_отдела" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название_отдела" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Пользователь">
+          <Key>
+            <PropertyRef Name="Код_пользователя" />
+          </Key>
+          <Property Name="Код_пользователя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+          <Property Name="Серия_паспорта" Type="nvarchar" MaxLength="4" />
+          <Property Name="Номер_паспорта" Type="nvarchar" MaxLength="6" />
+          <Property Name="Военный_билет" Type="nvarchar" MaxLength="7" />
+          <Property Name="Вид_образования" Type="int" />
+          <Property Name="Трудовая_книга" Type="nvarchar" MaxLength="7" />
+          <Property Name="Код_должности" Type="int" />
+          <Property Name="Код_отдела" Type="int" />
+          <Property Name="Код_склада" Type="int" />
+          <Property Name="Login" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Фото" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Склад">
+          <Key>
+            <PropertyRef Name="Код_склада" />
+          </Key>
+          <Property Name="Код_склада" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_нового_материала" Type="int" Nullable="false" />
+          <Property Name="Код_нового_инвентаря" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Событие">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Учёт инвентаря">
+          <Key>
+            <PropertyRef Name="Дата_и_время_бронирования" />
+          </Key>
+          <Property Name="Дата_и_время_бронирования" Type="datetime" Nullable="false" />
+          <Property Name="Код_инвентаря" Type="int" Nullable="false" />
+          <Property Name="Код_пользователя" Type="int" Nullable="false" />
+          <Property Name="Взял/Вернул" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Учёт материалов">
+          <Key>
+            <PropertyRef Name="Дата_и_время" />
+          </Key>
+          <Property Name="Дата_и_время" Type="datetime" Nullable="false" />
+          <Property Name="Код_материала" Type="int" Nullable="false" />
+          <Property Name="Код_пользователя" Type="int" Nullable="false" />
+          <Property Name="Вид_события" Type="int" Nullable="false" />
+          <Property Name="Количество" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Фильтр">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Материал_Фильтр">
+          <End Role="Фильтр" Type="Self.Фильтр" Multiplicity="0..1" />
+          <End Role="Материал" Type="Self.Материал" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Фильтр">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Материал">
+              <PropertyRef Name="Фильтр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователь_Должность">
+          <End Role="Должность" Type="Self.Должность" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должность">
+              <PropertyRef Name="Код_должности" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Код_должности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователь_Образование">
+          <End Role="Образование" Type="Self.Образование" Multiplicity="0..1" />
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Образование">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Вид_образования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователь_Отдел">
+          <End Role="Отдел" Type="Self.Отдел" Multiplicity="0..1" />
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Отдел">
+              <PropertyRef Name="Код_отдела" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Код_отдела" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователь_Склад">
+          <End Role="Склад" Type="Self.Склад" Multiplicity="0..1" />
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Склад">
+              <PropertyRef Name="Код_склада" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Код_склада" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Склад_Новый инвентарь со склада">
+          <End Role="Новый инвентарь со склада" Type="Self.Новый инвентарь со склада" Multiplicity="1" />
+          <End Role="Склад" Type="Self.Склад" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Новый инвентарь со склада">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Склад">
+              <PropertyRef Name="Код_нового_инвентаря" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Склад_Новый_материал_со_склада">
+          <End Role="Новый_материал_со_склада" Type="Self.Новый_материал_со_склада" Multiplicity="1" />
+          <End Role="Склад" Type="Self.Склад" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Новый_материал_со_склада">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Склад">
+              <PropertyRef Name="Код_нового_материала" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт инвентаря_Инвентарь">
+          <End Role="Инвентарь" Type="Self.Инвентарь" Multiplicity="1" />
+          <End Role="Учёт инвентаря" Type="Self.Учёт инвентаря" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Инвентарь">
+              <PropertyRef Name="Код_инвентаря" />
+            </Principal>
+            <Dependent Role="Учёт инвентаря">
+              <PropertyRef Name="Код_инвентаря" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт инвентаря_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1" />
+          <End Role="Учёт инвентаря" Type="Self.Учёт инвентаря" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код_пользователя" />
+            </Principal>
+            <Dependent Role="Учёт инвентаря">
+              <PropertyRef Name="Код_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт материалов_Материал">
+          <End Role="Материал" Type="Self.Материал" Multiplicity="1" />
+          <End Role="Учёт материалов" Type="Self.Учёт материалов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Материал">
+              <PropertyRef Name="Код_материала" />
+            </Principal>
+            <Dependent Role="Учёт материалов">
+              <PropertyRef Name="Код_материала" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт материалов_Пользователь">
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="1" />
+          <End Role="Учёт материалов" Type="Self.Учёт материалов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код_пользователя" />
+            </Principal>
+            <Dependent Role="Учёт материалов">
+              <PropertyRef Name="Код_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт материалов_Событие">
+          <End Role="Событие" Type="Self.Событие" Multiplicity="1" />
+          <End Role="Учёт материалов" Type="Self.Учёт материалов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Событие">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Учёт материалов">
+              <PropertyRef Name="Вид_события" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ip120ModelContainer">
+          <EntitySet Name="Должность" EntityType="Self.Должность" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Инвентарь" EntityType="Self.Инвентарь" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Материал" EntityType="Self.Материал" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Новый инвентарь со склада" EntityType="Self.Новый инвентарь со склада" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Новый_материал_со_склада" EntityType="Self.Новый_материал_со_склада" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Образование" EntityType="Self.Образование" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Отдел" EntityType="Self.Отдел" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Склад" EntityType="Self.Склад" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Событие" EntityType="Self.Событие" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Учёт инвентаря" EntityType="Self.Учёт инвентаря" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Учёт материалов" EntityType="Self.Учёт материалов" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Фильтр" EntityType="Self.Фильтр" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Материал_Фильтр" Association="Self.FK_Материал_Фильтр">
+            <End Role="Фильтр" EntitySet="Фильтр" />
+            <End Role="Материал" EntitySet="Материал" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователь_Должность" Association="Self.FK_Пользователь_Должность">
+            <End Role="Должность" EntitySet="Должность" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователь_Образование" Association="Self.FK_Пользователь_Образование">
+            <End Role="Образование" EntitySet="Образование" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователь_Отдел" Association="Self.FK_Пользователь_Отдел">
+            <End Role="Отдел" EntitySet="Отдел" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователь_Склад" Association="Self.FK_Пользователь_Склад">
+            <End Role="Склад" EntitySet="Склад" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Склад_Новый инвентарь со склада" Association="Self.FK_Склад_Новый инвентарь со склада">
+            <End Role="Новый инвентарь со склада" EntitySet="Новый инвентарь со склада" />
+            <End Role="Склад" EntitySet="Склад" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Склад_Новый_материал_со_склада" Association="Self.FK_Склад_Новый_материал_со_склада">
+            <End Role="Новый_материал_со_склада" EntitySet="Новый_материал_со_склада" />
+            <End Role="Склад" EntitySet="Склад" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт инвентаря_Инвентарь" Association="Self.FK_Учёт инвентаря_Инвентарь">
+            <End Role="Инвентарь" EntitySet="Инвентарь" />
+            <End Role="Учёт инвентаря" EntitySet="Учёт инвентаря" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт инвентаря_Пользователь" Association="Self.FK_Учёт инвентаря_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Учёт инвентаря" EntitySet="Учёт инвентаря" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт материалов_Материал" Association="Self.FK_Учёт материалов_Материал">
+            <End Role="Материал" EntitySet="Материал" />
+            <End Role="Учёт материалов" EntitySet="Учёт материалов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт материалов_Пользователь" Association="Self.FK_Учёт материалов_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Учёт материалов" EntitySet="Учёт материалов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт материалов_Событие" Association="Self.FK_Учёт материалов_Событие">
+            <End Role="Событие" EntitySet="Событие" />
+            <End Role="Учёт материалов" EntitySet="Учёт материалов" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ip120Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Должность" EntityType="ip120Model.Должность" />
+          <EntitySet Name="Инвентарь" EntityType="ip120Model.Инвентарь" />
+          <EntitySet Name="Новый_инвентарь_со_склада" EntityType="ip120Model.Новый_инвентарь_со_склада" />
+          <EntitySet Name="Новый_материал_со_склада" EntityType="ip120Model.Новый_материал_со_склада" />
+          <EntitySet Name="Образование" EntityType="ip120Model.Образование" />
+          <EntitySet Name="Отдел" EntityType="ip120Model.Отдел" />
+          <EntitySet Name="Пользователь" EntityType="ip120Model.Пользователь" />
+          <EntitySet Name="Склад" EntityType="ip120Model.Склад" />
+          <EntitySet Name="Событие" EntityType="ip120Model.Событие" />
+          <EntitySet Name="Учёт_инвентаря" EntityType="ip120Model.Учёт_инвентаря" />
+          <EntitySet Name="Учёт_материалов" EntityType="ip120Model.Учёт_материалов" />
+          <EntitySet Name="Фильтр" EntityType="ip120Model.Фильтр" />
+          <AssociationSet Name="FK_Пользователь_Должность" Association="ip120Model.FK_Пользователь_Должность">
+            <End Role="Должность" EntitySet="Должность" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт_инвентаря_Инвентарь" Association="ip120Model.FK_Учёт_инвентаря_Инвентарь">
+            <End Role="Инвентарь" EntitySet="Инвентарь" />
+            <End Role="Учёт_инвентаря" EntitySet="Учёт_инвентаря" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Склад_Новый_инвентарь_со_склада" Association="ip120Model.FK_Склад_Новый_инвентарь_со_склада">
+            <End Role="Новый_инвентарь_со_склада" EntitySet="Новый_инвентарь_со_склада" />
+            <End Role="Склад" EntitySet="Склад" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Склад_Новый_материал_со_склада" Association="ip120Model.FK_Склад_Новый_материал_со_склада">
+            <End Role="Новый_материал_со_склада" EntitySet="Новый_материал_со_склада" />
+            <End Role="Склад" EntitySet="Склад" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователь_Образование" Association="ip120Model.FK_Пользователь_Образование">
+            <End Role="Образование" EntitySet="Образование" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователь_Отдел" Association="ip120Model.FK_Пользователь_Отдел">
+            <End Role="Отдел" EntitySet="Отдел" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователь_Склад" Association="ip120Model.FK_Пользователь_Склад">
+            <End Role="Склад" EntitySet="Склад" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт_инвентаря_Пользователь" Association="ip120Model.FK_Учёт_инвентаря_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Учёт_инвентаря" EntitySet="Учёт_инвентаря" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт_материалов_Пользователь" Association="ip120Model.FK_Учёт_материалов_Пользователь">
+            <End Role="Пользователь" EntitySet="Пользователь" />
+            <End Role="Учёт_материалов" EntitySet="Учёт_материалов" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт_материалов_Событие" Association="ip120Model.FK_Учёт_материалов_Событие">
+            <End Role="Событие" EntitySet="Событие" />
+            <End Role="Учёт_материалов" EntitySet="Учёт_материалов" />
+          </AssociationSet>
+          <EntitySet Name="Материал" EntityType="ip120Model.Материал" />
+          <AssociationSet Name="FK_Материал_Фильтр" Association="ip120Model.FK_Материал_Фильтр">
+            <End Role="Фильтр" EntitySet="Фильтр" />
+            <End Role="Материал" EntitySet="Материал" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учёт_материалов_Материал" Association="ip120Model.FK_Учёт_материалов_Материал">
+            <End Role="Материал" EntitySet="Материал" />
+            <End Role="Учёт_материалов" EntitySet="Учёт_материалов" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Должность">
+          <Key>
+            <PropertyRef Name="Код_должности" />
+          </Key>
+          <Property Name="Код_должности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Пользователь" Relationship="ip120Model.FK_Пользователь_Должность" FromRole="Должность" ToRole="Пользователь" />
+        </EntityType>
+        <EntityType Name="Инвентарь">
+          <Key>
+            <PropertyRef Name="Код_инвентаря" />
+          </Key>
+          <Property Name="Код_инвентаря" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Занятость" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Состояние" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Учёт_инвентаря" Relationship="ip120Model.FK_Учёт_инвентаря_Инвентарь" FromRole="Инвентарь" ToRole="Учёт_инвентаря" />
+        </EntityType>
+        <EntityType Name="Новый_инвентарь_со_склада">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Производитель" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Артикул" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_прибытия" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Количество" Type="Int32" Nullable="false" />
+          <Property Name="Цена" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Адрес_производителя" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Склад" Relationship="ip120Model.FK_Склад_Новый_инвентарь_со_склада" FromRole="Новый_инвентарь_со_склада" ToRole="Склад" />
+        </EntityType>
+        <EntityType Name="Новый_материал_со_склада">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Производитель" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Артикул" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_прибытия" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Количество" Type="Int32" Nullable="false" />
+          <Property Name="Цена" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Адрес_производителя" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Склад" Relationship="ip120Model.FK_Склад_Новый_материал_со_склада" FromRole="Новый_материал_со_склада" ToRole="Склад" />
+        </EntityType>
+        <EntityType Name="Образование">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Пользователь" Relationship="ip120Model.FK_Пользователь_Образование" FromRole="Образование" ToRole="Пользователь" />
+        </EntityType>
+        <EntityType Name="Отдел">
+          <Key>
+            <PropertyRef Name="Код_отдела" />
+          </Key>
+          <Property Name="Код_отдела" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_отдела" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Пользователь" Relationship="ip120Model.FK_Пользователь_Отдел" FromRole="Отдел" ToRole="Пользователь" />
+        </EntityType>
+        <EntityType Name="Пользователь">
+          <Key>
+            <PropertyRef Name="Код_пользователя" />
+          </Key>
+          <Property Name="Код_пользователя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Имя" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Серия_паспорта" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_паспорта" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Военный_билет" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="Вид_образования" Type="Int32" />
+          <Property Name="Трудовая_книга" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="Код_должности" Type="Int32" />
+          <Property Name="Код_отдела" Type="Int32" />
+          <Property Name="Код_склада" Type="Int32" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Фото" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Должность" Relationship="ip120Model.FK_Пользователь_Должность" FromRole="Пользователь" ToRole="Должность" />
+          <NavigationProperty Name="Образование" Relationship="ip120Model.FK_Пользователь_Образование" FromRole="Пользователь" ToRole="Образование" />
+          <NavigationProperty Name="Отдел" Relationship="ip120Model.FK_Пользователь_Отдел" FromRole="Пользователь" ToRole="Отдел" />
+          <NavigationProperty Name="Склад" Relationship="ip120Model.FK_Пользователь_Склад" FromRole="Пользователь" ToRole="Склад" />
+          <NavigationProperty Name="Учёт_инвентаря" Relationship="ip120Model.FK_Учёт_инвентаря_Пользователь" FromRole="Пользователь" ToRole="Учёт_инвентаря" />
+          <NavigationProperty Name="Учёт_материалов" Relationship="ip120Model.FK_Учёт_материалов_Пользователь" FromRole="Пользователь" ToRole="Учёт_материалов" />
+        </EntityType>
+        <EntityType Name="Склад">
+          <Key>
+            <PropertyRef Name="Код_склада" />
+          </Key>
+          <Property Name="Код_склада" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_нового_материала" Type="Int32" Nullable="false" />
+          <Property Name="Код_нового_инвентаря" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Новый_инвентарь_со_склада" Relationship="ip120Model.FK_Склад_Новый_инвентарь_со_склада" FromRole="Склад" ToRole="Новый_инвентарь_со_склада" />
+          <NavigationProperty Name="Новый_материал_со_склада" Relationship="ip120Model.FK_Склад_Новый_материал_со_склада" FromRole="Склад" ToRole="Новый_материал_со_склада" />
+          <NavigationProperty Name="Пользователь" Relationship="ip120Model.FK_Пользователь_Склад" FromRole="Склад" ToRole="Пользователь" />
+        </EntityType>
+        <EntityType Name="Событие">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Учёт_материалов" Relationship="ip120Model.FK_Учёт_материалов_Событие" FromRole="Событие" ToRole="Учёт_материалов" />
+        </EntityType>
+        <EntityType Name="Учёт_инвентаря">
+          <Key>
+            <PropertyRef Name="Дата_и_время_бронирования" />
+          </Key>
+          <Property Name="Дата_и_время_бронирования" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Код_инвентаря" Type="Int32" Nullable="false" />
+          <Property Name="Код_пользователя" Type="Int32" Nullable="false" />
+          <Property Name="Взял_Вернул" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Инвентарь" Relationship="ip120Model.FK_Учёт_инвентаря_Инвентарь" FromRole="Учёт_инвентаря" ToRole="Инвентарь" />
+          <NavigationProperty Name="Пользователь" Relationship="ip120Model.FK_Учёт_инвентаря_Пользователь" FromRole="Учёт_инвентаря" ToRole="Пользователь" />
+        </EntityType>
+        <EntityType Name="Учёт_материалов">
+          <Key>
+            <PropertyRef Name="Дата_и_время" />
+          </Key>
+          <Property Name="Дата_и_время" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Код_материала" Type="Int32" Nullable="false" />
+          <Property Name="Код_пользователя" Type="Int32" Nullable="false" />
+          <Property Name="Вид_события" Type="Int32" Nullable="false" />
+          <Property Name="Количество" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Пользователь" Relationship="ip120Model.FK_Учёт_материалов_Пользователь" FromRole="Учёт_материалов" ToRole="Пользователь" />
+          <NavigationProperty Name="Событие" Relationship="ip120Model.FK_Учёт_материалов_Событие" FromRole="Учёт_материалов" ToRole="Событие" />
+          <NavigationProperty Name="Материал" Relationship="ip120Model.FK_Учёт_материалов_Материал" FromRole="Учёт_материалов" ToRole="Материал" />
+        </EntityType>
+        <EntityType Name="Фильтр">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Материал" Relationship="ip120Model.FK_Материал_Фильтр" FromRole="Фильтр" ToRole="Материал" />
+        </EntityType>
+        <Association Name="FK_Пользователь_Должность">
+          <End Type="ip120Model.Должность" Role="Должность" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ip120Model.Пользователь" Role="Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должность">
+              <PropertyRef Name="Код_должности" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Код_должности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт_инвентаря_Инвентарь">
+          <End Type="ip120Model.Инвентарь" Role="Инвентарь" Multiplicity="1" />
+          <End Type="ip120Model.Учёт_инвентаря" Role="Учёт_инвентаря" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Инвентарь">
+              <PropertyRef Name="Код_инвентаря" />
+            </Principal>
+            <Dependent Role="Учёт_инвентаря">
+              <PropertyRef Name="Код_инвентаря" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Склад_Новый_инвентарь_со_склада">
+          <End Type="ip120Model.Новый_инвентарь_со_склада" Role="Новый_инвентарь_со_склада" Multiplicity="1" />
+          <End Type="ip120Model.Склад" Role="Склад" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Новый_инвентарь_со_склада">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Склад">
+              <PropertyRef Name="Код_нового_инвентаря" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Склад_Новый_материал_со_склада">
+          <End Type="ip120Model.Новый_материал_со_склада" Role="Новый_материал_со_склада" Multiplicity="1" />
+          <End Type="ip120Model.Склад" Role="Склад" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Новый_материал_со_склада">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Склад">
+              <PropertyRef Name="Код_нового_материала" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователь_Образование">
+          <End Type="ip120Model.Образование" Role="Образование" Multiplicity="0..1" />
+          <End Type="ip120Model.Пользователь" Role="Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Образование">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Вид_образования" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователь_Отдел">
+          <End Type="ip120Model.Отдел" Role="Отдел" Multiplicity="0..1" />
+          <End Type="ip120Model.Пользователь" Role="Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Отдел">
+              <PropertyRef Name="Код_отдела" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Код_отдела" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователь_Склад">
+          <End Type="ip120Model.Склад" Role="Склад" Multiplicity="0..1" />
+          <End Type="ip120Model.Пользователь" Role="Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Склад">
+              <PropertyRef Name="Код_склада" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Код_склада" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт_инвентаря_Пользователь">
+          <End Type="ip120Model.Пользователь" Role="Пользователь" Multiplicity="1" />
+          <End Type="ip120Model.Учёт_инвентаря" Role="Учёт_инвентаря" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код_пользователя" />
+            </Principal>
+            <Dependent Role="Учёт_инвентаря">
+              <PropertyRef Name="Код_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт_материалов_Пользователь">
+          <End Type="ip120Model.Пользователь" Role="Пользователь" Multiplicity="1" />
+          <End Type="ip120Model.Учёт_материалов" Role="Учёт_материалов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователь">
+              <PropertyRef Name="Код_пользователя" />
+            </Principal>
+            <Dependent Role="Учёт_материалов">
+              <PropertyRef Name="Код_пользователя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт_материалов_Событие">
+          <End Type="ip120Model.Событие" Role="Событие" Multiplicity="1" />
+          <End Type="ip120Model.Учёт_материалов" Role="Учёт_материалов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Событие">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Учёт_материалов">
+              <PropertyRef Name="Вид_события" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Материал">
+          <Key>
+            <PropertyRef Name="Код_материала" />
+          </Key>
+          <Property Name="Код_материала" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Состояние" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Количество" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="фото" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Фильтр" Type="Int32" />
+          <Property Name="Наличие" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Фильтр1" Relationship="ip120Model.FK_Материал_Фильтр" FromRole="Материал" ToRole="Фильтр" />
+          <NavigationProperty Name="Учёт_материалов" Relationship="ip120Model.FK_Учёт_материалов_Материал" FromRole="Материал" ToRole="Учёт_материалов" />
+        </EntityType>
+        <Association Name="FK_Материал_Фильтр">
+          <End Type="ip120Model.Фильтр" Role="Фильтр" Multiplicity="0..1" />
+          <End Type="ip120Model.Материал" Role="Материал" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Фильтр">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Материал">
+              <PropertyRef Name="Фильтр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учёт_материалов_Материал">
+          <End Type="ip120Model.Материал" Role="Материал" Multiplicity="1" />
+          <End Type="ip120Model.Учёт_материалов" Role="Учёт_материалов" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Материал">
+              <PropertyRef Name="Код_материала" />
+            </Principal>
+            <Dependent Role="Учёт_материалов">
+              <PropertyRef Name="Код_материала" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ip120ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Должность">
+            <EntityTypeMapping TypeName="ip120Model.Должность">
+              <MappingFragment StoreEntitySet="Должность">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Инвентарь">
+            <EntityTypeMapping TypeName="ip120Model.Инвентарь">
+              <MappingFragment StoreEntitySet="Инвентарь">
+                <ScalarProperty Name="Состояние" ColumnName="Состояние" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Занятость" ColumnName="Занятость" />
+                <ScalarProperty Name="Код_инвентаря" ColumnName="Код_инвентаря" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Новый_инвентарь_со_склада">
+            <EntityTypeMapping TypeName="ip120Model.Новый_инвентарь_со_склада">
+              <MappingFragment StoreEntitySet="Новый инвентарь со склада">
+                <ScalarProperty Name="Адрес_производителя" ColumnName="Адрес_производителя" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Дата_прибытия" ColumnName="Дата_прибытия" />
+                <ScalarProperty Name="Артикул" ColumnName="Артикул" />
+                <ScalarProperty Name="Производитель" ColumnName="Производитель" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Новый_материал_со_склада">
+            <EntityTypeMapping TypeName="ip120Model.Новый_материал_со_склада">
+              <MappingFragment StoreEntitySet="Новый_материал_со_склада">
+                <ScalarProperty Name="Адрес_производителя" ColumnName="Адрес_производителя" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Дата_прибытия" ColumnName="Дата_прибытия" />
+                <ScalarProperty Name="Артикул" ColumnName="Артикул" />
+                <ScalarProperty Name="Производитель" ColumnName="Производитель" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Образование">
+            <EntityTypeMapping TypeName="ip120Model.Образование">
+              <MappingFragment StoreEntitySet="Образование">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Отдел">
+            <EntityTypeMapping TypeName="ip120Model.Отдел">
+              <MappingFragment StoreEntitySet="Отдел">
+                <ScalarProperty Name="Название_отдела" ColumnName="Название_отдела" />
+                <ScalarProperty Name="Код_отдела" ColumnName="Код_отдела" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пользователь">
+            <EntityTypeMapping TypeName="ip120Model.Пользователь">
+              <MappingFragment StoreEntitySet="Пользователь">
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Код_склада" ColumnName="Код_склада" />
+                <ScalarProperty Name="Код_отдела" ColumnName="Код_отдела" />
+                <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+                <ScalarProperty Name="Трудовая_книга" ColumnName="Трудовая_книга" />
+                <ScalarProperty Name="Вид_образования" ColumnName="Вид_образования" />
+                <ScalarProperty Name="Военный_билет" ColumnName="Военный_билет" />
+                <ScalarProperty Name="Номер_паспорта" ColumnName="Номер_паспорта" />
+                <ScalarProperty Name="Серия_паспорта" ColumnName="Серия_паспорта" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Код_пользователя" ColumnName="Код_пользователя" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Склад">
+            <EntityTypeMapping TypeName="ip120Model.Склад">
+              <MappingFragment StoreEntitySet="Склад">
+                <ScalarProperty Name="Код_нового_инвентаря" ColumnName="Код_нового_инвентаря" />
+                <ScalarProperty Name="Код_нового_материала" ColumnName="Код_нового_материала" />
+                <ScalarProperty Name="Код_склада" ColumnName="Код_склада" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Событие">
+            <EntityTypeMapping TypeName="ip120Model.Событие">
+              <MappingFragment StoreEntitySet="Событие">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Учёт_инвентаря">
+            <EntityTypeMapping TypeName="ip120Model.Учёт_инвентаря">
+              <MappingFragment StoreEntitySet="Учёт инвентаря">
+                <ScalarProperty Name="Взял_Вернул" ColumnName="Взял/Вернул" />
+                <ScalarProperty Name="Код_пользователя" ColumnName="Код_пользователя" />
+                <ScalarProperty Name="Код_инвентаря" ColumnName="Код_инвентаря" />
+                <ScalarProperty Name="Дата_и_время_бронирования" ColumnName="Дата_и_время_бронирования" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Учёт_материалов">
+            <EntityTypeMapping TypeName="ip120Model.Учёт_материалов">
+              <MappingFragment StoreEntitySet="Учёт материалов">
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Вид_события" ColumnName="Вид_события" />
+                <ScalarProperty Name="Код_пользователя" ColumnName="Код_пользователя" />
+                <ScalarProperty Name="Код_материала" ColumnName="Код_материала" />
+                <ScalarProperty Name="Дата_и_время" ColumnName="Дата_и_время" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Фильтр">
+            <EntityTypeMapping TypeName="ip120Model.Фильтр">
+              <MappingFragment StoreEntitySet="Фильтр">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Материал">
+            <EntityTypeMapping TypeName="ip120Model.Материал">
+              <MappingFragment StoreEntitySet="Материал">
+                <ScalarProperty Name="Наличие" ColumnName="Наличие" />
+                <ScalarProperty Name="Фильтр" ColumnName="Фильтр" />
+                <ScalarProperty Name="фото" ColumnName="фото" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Состояние" ColumnName="Состояние" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Код_материала" ColumnName="Код_материала" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

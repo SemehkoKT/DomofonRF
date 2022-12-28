@@ -1,0 +1,52 @@
+﻿<Window x:Class="Проект2.AddEditBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Проект2" d:DataContext="{d:DesignInstance Type=local:AddEditBookViewModel}"
+        mc:Ignorable="d"
+        Title="Работа с материалами" Height="333" Width="461" DataContextChanged="Window_DataContextChanged" ResizeMode="NoResize" Foreground="#FFD6D6D6" FontFamily="Arial" FontSize="14" >
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF1D4552"/>
+                <GradientStop Color="#FF0F3325" Offset="1"/>
+                <GradientStop Color="#FF153B3A" Offset="0.615"/>
+                <GradientStop Color="#FF153B3B" Offset="0.657"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBlock Text="{Binding Title,StringFormat={}{0} материал}" FontWeight="Bold" FontSize="20" Margin="40,0,-0.6,-0.8">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF1D4552"/>
+                    <GradientStop Color="#FF0F3325" Offset="1"/>
+                    <GradientStop Color="#FF153B3A" Offset="0.615"/>
+                    <GradientStop Color="#FF153B3B" Offset="0.657"/>
+                </LinearGradientBrush>
+            </TextBlock.Background></TextBlock>
+        <local:UserControl1 SaveDirectory="images/material" ImagePath="{Binding Материал.фото, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40" Width="150" Height="150"></local:UserControl1>
+        <StackPanel HorizontalAlignment="Right" Margin="0,40,20,0" Orientation="Vertical">
+            <TextBlock Text="Назване материала"></TextBlock>
+            <TextBox Width="220" Text="{Binding Материал.Название}" Foreground="#FFD6D6D6"  Background="#FF09634D"></TextBox>
+            <TextBlock Text="Состояние"></TextBlock>
+            <TextBox Width="220" Text="{Binding Материал.Состояние}" Foreground="#FFD6D6D6" Background="#FF09634D"></TextBox>
+            <TextBlock Text="Количество"></TextBlock>
+            <TextBox Width="220" Text="{Binding Материал.Количество}" Foreground="#FFD6D6D6" Background="#FF09634D"></TextBox>
+            <TextBlock Text="Наличие"></TextBlock>
+            <CheckBox Width="220" IsChecked="{Binding Материал.Наличие}" Background="#FF09634D" Foreground="White"></CheckBox>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="40,200,0,0">
+            <TextBlock Text="Вид:"></TextBlock>
+            <ComboBox ItemsSource="{Binding Фильтрs}" DisplayMemberPath="Название" SelectedItem="{Binding Фильтр.Название}" Width="126" Foreground="Black" Background="#FF09634D" BorderBrush="#FF09634D">
+            </ComboBox>
+        </StackPanel>
+        <Button Command="{Binding SaveCommand}" Margin="136,245,135,10" Height="35"  Foreground="#FFD6D6D6" Click="Button_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF09634D"/>
+                    <GradientStop Color="#FF054443" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background> Сохранить
+        </Button>
+    </Grid>
+</Window>

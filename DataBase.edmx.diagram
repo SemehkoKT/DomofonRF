@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8892dae8cf634edbbf5b04eab58fcf62" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="ip120Model.Должность" Width="1.5" PointX="3" PointY="6.125" />
+        <EntityTypeShape EntityType="ip120Model.Инвентарь" Width="1.5" PointX="8.25" PointY="7.875" />
+        <EntityTypeShape EntityType="ip120Model.Новый_инвентарь_со_склада" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="ip120Model.Новый_материал_со_склада" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="ip120Model.Образование" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="ip120Model.Отдел" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="ip120Model.Пользователь" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="ip120Model.Склад" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="ip120Model.Событие" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="ip120Model.Учёт_инвентаря" Width="1.5" PointX="10.5" PointY="2.75" />
+        <EntityTypeShape EntityType="ip120Model.Учёт_материалов" Width="1.5" PointX="7.5" PointY="2.5" />
+        <EntityTypeShape EntityType="ip120Model.Фильтр" Width="1.5" PointX="3" PointY="14.25" />
+        <AssociationConnector Association="ip120Model.FK_Пользователь_Должность" />
+        <AssociationConnector Association="ip120Model.FK_Учёт_инвентаря_Инвентарь" />
+        <AssociationConnector Association="ip120Model.FK_Склад_Новый_инвентарь_со_склада" />
+        <AssociationConnector Association="ip120Model.FK_Склад_Новый_материал_со_склада" />
+        <AssociationConnector Association="ip120Model.FK_Пользователь_Образование" />
+        <AssociationConnector Association="ip120Model.FK_Пользователь_Отдел" />
+        <AssociationConnector Association="ip120Model.FK_Пользователь_Склад" />
+        <AssociationConnector Association="ip120Model.FK_Учёт_инвентаря_Пользователь" />
+        <AssociationConnector Association="ip120Model.FK_Учёт_материалов_Пользователь" />
+        <AssociationConnector Association="ip120Model.FK_Учёт_материалов_Событие" />
+        <EntityTypeShape EntityType="ip120Model.Материал" Width="1.5" PointX="5.25" PointY="13.625" />
+        <AssociationConnector Association="ip120Model.FK_Материал_Фильтр" />
+        <AssociationConnector Association="ip120Model.FK_Учёт_материалов_Материал" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
